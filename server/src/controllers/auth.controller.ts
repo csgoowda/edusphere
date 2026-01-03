@@ -229,8 +229,11 @@ export const loginStudent = async (req: Request, res: Response) => {
             }
         });
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+    } catch (error: any) {
+        console.error("Student Login Error:", error);
+        res.status(500).json({
+            error: 'Internal Server Error',
+            details: error.message || String(error)
+        });
     }
 };
