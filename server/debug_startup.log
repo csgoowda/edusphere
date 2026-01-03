@@ -2,34 +2,11 @@ Starting server...
 Imported express
 Imported prisma
 Middleware setup
-Imported express
-Imported express
-Imported prisma
-Middleware setup
-Imported prisma
-Middleware setup
-Imported authRoutes
-Imported authRoutes
 Imported authRoutes
 Imported collegeRoutes
-Imported collegeRoutes
-Imported collegeRoutes
-Imported uploadRoutes
-Imported uploadRoutes
 Imported uploadRoutes
 Imported govRoutes
-Imported govRoutes
-Imported govRoutes
 Routes imported
-Routes registered
-Routes imported
-Connecting to DB...
-✅ Database connected successfully
-🚀 Server running on port 5000
-Routes imported
-Routes registered
-Connecting to DB...
-✅ Database connected successfully
 Routes registered
 Connecting to DB...
 ✅ Database connected successfully
