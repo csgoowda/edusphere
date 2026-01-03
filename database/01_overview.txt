@@ -1,0 +1,36 @@
+==================================================
+EDUSPHERE SYSTEM ARCHITECTURE DOCUMENTATION
+COMPONENT: DATABASE
+FILE: 01_overview.txt
+==================================================
+
+1. ARCHITECTURE OVERVIEW
+--------------------------------------------------
+Engine: SQLite
+Paradigm: Relational (SQL)
+File-based storage for simplicity and portability.
+
+2. CORE ENTITIES (HIGH LEVEL)
+--------------------------------------------------
+- Users (Authentication data)
+- Roles (Permissions)
+- Colleges (Profile, Infrastructure, Courses)
+- Students (Enrollment, Personal Data)
+- WorkflowLogs (Audit trail of status changes)
+
+3. DATA INTEGRITY & CONSTRAINTS
+--------------------------------------------------
+- Foreign Keys enabled and strictly enforced.
+- UNIQUE constraints on Emails, College Codes.
+- CHECK constraints for Enum values (Status: 'PENDING', 'APPROVED', etc.).
+
+4. THE "IS_LOCKED" MECHANISM
+--------------------------------------------------
+A central column (broadly applied or specific to submissions) determines mutability.
+- `is_locked` (BOOLEAN): Defaults to FALSE. Sets to TRUE upon submission.
+- Database triggers or Application Logic must prevent UPDATEs when `is_locked` = 1, except by authorized override (Govt unlock).
+
+5. STORAGE STRATEGY
+--------------------------------------------------
+- Text/Numbers stored directly.
+- Files/Images stored on disk/cloud; Database stores RELATIVE PATHS / URIs only.

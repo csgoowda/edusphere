@@ -1,0 +1,338 @@
+[2026-01-03T14:27:36.741Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:157:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:155:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T14:28:03.966Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:157:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:155:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:12:27.335Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:12:27.353Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:13:20.015Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:13:20.023Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:18:53.117Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:18:53.121Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:02.854Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:02.858Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:04.530Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:04.540Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:06.496Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:06.504Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:21.365Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:21.379Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:23.338Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:23.352Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:25.392Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:25.418Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:33.673Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:33.676Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:35.789Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:35.807Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:37.794Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+
+[2026-01-03T15:19:37.797Z] Get Trending Courses Error: Cannot read properties of undefined (reading 'findMany')
+TypeError: Cannot read properties of undefined (reading 'findMany')
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:175:62
+    at Generator.next (<anonymous>)
+    at c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:41:71
+    at new Promise (<anonymous>)
+    at __awaiter (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:37:12)
+    at getTrendingCourses (c:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:173:77)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+    at next (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (c:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\express\lib\router\layer.js:95:5)
+

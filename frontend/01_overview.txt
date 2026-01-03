@@ -1,0 +1,45 @@
+==================================================
+EDUSPHERE SYSTEM ARCHITECTURE DOCUMENTATION
+COMPONENT: FRONTEND
+FILE: 01_overview.txt
+==================================================
+
+1. ARCHITECTURE OVERVIEW
+--------------------------------------------------
+Framework: React.js
+Language: TypeScript (TSX)
+Styling: Vanilla CSS / Styled Components (TBD based on implementation)
+Routing: React Router
+
+2. CORE PRINCIPLES
+--------------------------------------------------
+- Role-Based Access Control (RBAC): Strict separation of views for Students, Colleges, and Government officials.
+- State Immutability: Visual states must reflect the "Locked" status of data.
+- User Experience: "Submit Once" philosophy for colleges.
+
+3. ROLE SEPARATION & PORTALS
+--------------------------------------------------
+A. PUBLIC PORTAL
+   - Landing Page
+   - Login / Registration
+   - General Information
+
+B. STUDENT DASHBOARD
+   - View approved college data
+   - Profile management
+   - Read-only access to official records
+
+C. COLLEGE DASHBOARD
+   - Data Entry (Course details, Faculty, Infrastructure)
+   - "Submit for Approval" workflow
+   - Read-write until Locked -> Read-only after Submission
+
+D. GOVERNMENT DASHBOARD
+   - Verification queue
+   - Approve / Reject / Request Correction actions
+   - System-wide oversight
+
+4. DATA FLOW PHILOSOPHY
+--------------------------------------------------
+Frontend acts as a presentation layer. No business logic regarding "Locking" or "Validation" is trusted on the client side; it mirrors the backend state.
+All forms must check the `is_locked` status from the API before enabling editing.

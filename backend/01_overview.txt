@@ -1,0 +1,43 @@
+==================================================
+EDUSPHERE SYSTEM ARCHITECTURE DOCUMENTATION
+COMPONENT: BACKEND
+FILE: 01_overview.txt
+==================================================
+
+1. ARCHITECTURE OVERVIEW
+--------------------------------------------------
+Runtime: Node.js
+Framework: Express.js (assumed standard for Node)
+Database: SQLite (Relational)
+Authentication: JWT (JSON Web Tokens)
+
+2. CORE RESPONSIBILITIES
+--------------------------------------------------
+- API Gateway for Frontend clients.
+- Enforcer of the "One Submission" Rule.
+- Management of the State Machine (PENDING -> APPROVED/REJECTED).
+- File Storage management for college proofs/documents.
+
+3. SECURITY & AUTHORIZATION LAYERS
+--------------------------------------------------
+A. AUTHENTICATION
+   - Verifies identity (Student vs College vs Govt).
+   - Issues Role-based tokens.
+
+B. AUTHORIZATION MIDDLEWARE
+   - Intercepts every write request.
+   - Checks `is_locked` status for College users.
+   - Allows specific transitions only for Government users.
+
+4. API DESIGN PHILOSOPHY
+--------------------------------------------------
+- RESTful standards.
+- Response envelopes include status and data.
+- Error handling must distinguish between "Validation Error" and "Workflow Violation" (e.g., trying to edit a locked record).
+
+5. WORKFLOW ENFORCEMENT
+--------------------------------------------------
+The backend is the specific guardian of the workflow.
+- IF status == PENDING AND Actor == College: EDIT ALLOWED
+- IF status == SUBMITTED AND Actor == College: EDIT DENIED (LOCKED)
+- IF status == SUBMITTED AND Actor == Govt: REVIEW ACTIONS ALLOWED
