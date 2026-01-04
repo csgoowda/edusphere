@@ -21,10 +21,11 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-    if (file.mimetype === 'application/pdf') {
+    const allowed = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+    if (allowed.includes(file.mimetype)) {
         cb(null, true);
     } else {
-        cb(new Error('Only PDF files are allowed!'));
+        cb(new Error('Only PDF and Image files (JPG, PNG) are allowed!'));
     }
 };
 

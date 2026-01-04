@@ -1,16 +1,17 @@
 
 import express from 'express';
 import { authenticateToken, authorizeRole } from '../middleware/auth';
-import { getPendingColleges, getCollegeFullDetails, verifyCollege } from '../controllers/gov.controller';
+import { getPendingColleges, getCollegeFullDetails, verifyCollege, getApprovedColleges } from '../controllers/gov.controller';
 
 const router = express.Router();
 
 // Middleware applied to all routes in this router
-// router.use(authenticateToken, authorizeRole(['GOV']));
+router.use(authenticateToken, authorizeRole(['GOV']));
 
-// router.get('/colleges', getPendingColleges);
-// router.get('/colleges/:id', getCollegeFullDetails);
-// router.post('/verify', verifyCollege);
+router.get('/colleges', getPendingColleges);
+router.get('/approved-colleges', getApprovedColleges);
+router.get('/colleges/:id', getCollegeFullDetails);
+router.post('/verify', verifyCollege);
 
 // Scholarships
 import { getScholarships, addScholarship, deleteScholarship, updateScholarship, getTrendingCourses, addTrendingCourse, deleteTrendingCourse, updateTrendingCourse } from '../controllers/gov.controller';

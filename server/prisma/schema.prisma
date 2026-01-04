@@ -81,6 +81,10 @@ model College {
   verifier        GovernmentUser? @relation(fields: [verified_by], references: [id])
   remarks         String?
 
+  approved_at     DateTime?
+  valid_until     DateTime?
+  approval_status String    @default("PENDING") // ACTIVE, EXPIRED, EXPIRING_SOON, REVOKED, PENDING
+
   // Relations
   academic_details  AcademicDetail?
   placement_details PlacementDetail?

@@ -13,11 +13,14 @@ const logError = (msg: string, error: any) => {
     console.error(msg, error);
 }
 
+// --- COLLEGE MANAGEMENT ---
+
+// 1. Get Pending Colleges
 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
     try {
         const colleges = await (prisma.college as any).findMany({
             where: {
-                status: { in: ['PENDING', 'CORRECTION_REQUIRED'] },
+                status: { in: ['PENDING', 'CORRECTION_REQUIRED', 'CORRECTION'] },
                 is_locked: true
             },
             select: {
@@ -33,12 +36,52 @@ export const getPendingColleges = async (req: AuthRequest, res: Response) => {
                 district: true,
                 principal_name: true,
                 address: true,
-            }
+                updatedAt: true
+            },
+            orderBy: { name: 'asc' }
         });
         res.json(colleges);
     } catch (error) {
-        logError("Failed to fetch colleges", error);
+        logError("Failed to fetch pending colleges", error);
         res.status(500).json({ error: 'Failed to fetch colleges' });
+    }
+};
+
+// 2. Get Approved Colleges (with Auto-Expiry Check)
+export const getApprovedColleges = async (req: AuthRequest, res: Response) => {
+    try {
+        const { country, state, district, type } = req.query;
+        const whereClause: any = {
+            status: { contains: 'APPROVED', mode: 'insensitive' }
+        };
+
+        if (country && country !== '') whereClause.country = { contains: String(country), mode: 'insensitive' };
+        if (state && state !== '') whereClause.state = { contains: String(state), mode: 'insensitive' };
+        if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+        if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+
+        const colleges = await (prisma.college as any).findMany({
+            where: whereClause,
+            select: {
+                id: true,
+                name: true,
+                code: true,
+                college_type: true,
+                country: true,
+                state: true,
+                district: true,
+                approved_at: true,
+                valid_until: true,
+                approval_status: true,
+                status: true
+            }
+        });
+
+        res.json(colleges);
+
+    } catch (error) {
+        logError("Failed to fetch approved colleges", error);
+        res.status(500).json({ error: 'Failed to fetch approved colleges' });
     }
 };
 
@@ -70,31 +113,60 @@ export const getCollegeFullDetails = async (req: AuthRequest, res: Response) => 
     }
 };
 
+// 3. Verify / Renew / Revoke
 export const verifyCollege = async (req: AuthRequest, res: Response) => {
     try {
         const officerId = req.user?.id;
-        const { collegeId, action, remarks } = req.body; // action: APPROVED | REJECTED | CORRECTION_REQUIRED
+        const { collegeId, action, remarks } = req.body;
 
-        if (!['APPROVED', 'REJECTED', 'CORRECTION_REQUIRED'].includes(action)) {
+        // Actions: APPROVED, REJECTED, CORRECTION, RENEW, REVOKE
+
+        if (!['APPROVED', 'REJECTED', 'CORRECTION_REQUIRED', 'RENEW', 'REVOKE'].includes(action)) {
             return res.status(400).json({ error: 'Invalid Action' });
         }
 
-        if (action !== 'APPROVED' && !remarks) {
-            return res.status(400).json({ error: 'Remarks are mandatory for Rejection/Correction' });
+        if ((action === 'REJECTED' || action === 'CORRECTION_REQUIRED' || action === 'REVOKE') && !remarks) {
+            return res.status(400).json({ error: 'Remarks are mandatory for this action' });
         }
+
+        const now = new Date();
+        const sixMonthsLater = new Date();
+        sixMonthsLater.setMonth(now.getMonth() + 6);
 
         // Transaction
         await prisma.$transaction(async (tx: any) => {
-            // 1. Update College Status
+
+            let updateData: any = {
+                verified_by: officerId,
+                verified_at: now,
+                remarks: remarks || null
+            };
+
+            if (action === 'APPROVED' || action === 'RENEW') {
+                updateData.status = 'APPROVED';
+                updateData.is_locked = true;
+                updateData.approved_at = now;
+                updateData.valid_until = sixMonthsLater;
+                updateData.approval_status = 'ACTIVE';
+            } else if (action === 'REJECTED') {
+                updateData.status = 'REJECTED';
+                updateData.is_locked = true;
+                updateData.approval_status = 'REJECTED';
+            } else if (action === 'REVOKE') {
+                updateData.status = 'REJECTED';
+                updateData.is_locked = true;
+                updateData.approval_status = 'REVOKED';
+                updateData.valid_until = now;
+            } else if (action === 'CORRECTION_REQUIRED') {
+                updateData.status = 'CORRECTION_REQUIRED';
+                updateData.is_locked = false; // Unlock
+                updateData.approval_status = 'PENDING';
+            }
+
+            // 1. Update College
             await tx.college.update({
                 where: { id: collegeId },
-                data: {
-                    status: action,
-                    is_locked: action === 'CORRECTION_REQUIRED' ? false : true, // Unlock if correction needed
-                    verified_by: officerId,
-                    verified_at: new Date(),
-                    remarks: remarks
-                }
+                data: updateData
             });
 
             // 2. Create Log Entry
@@ -103,12 +175,12 @@ export const verifyCollege = async (req: AuthRequest, res: Response) => {
                     college_id: collegeId,
                     officer_id: officerId!,
                     action: action,
-                    remarks: remarks || 'Verified',
+                    remarks: remarks || `${action} Successfully`,
                 }
             });
         });
 
-        res.json({ message: `College ${action} Successfully` });
+        res.json({ message: `College Action ${action} Completed Successfully` });
 
     } catch (error) {
         logError("Verification Action Failed", error);

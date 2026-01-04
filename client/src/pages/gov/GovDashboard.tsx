@@ -14,6 +14,14 @@ interface College {
     is_locked: boolean;
     principal_name: string;
     address: string;
+    college_type?: string;
+    country?: string;
+    state?: string;
+    district?: string;
+    approved_at?: string;
+    valid_until?: string;
+    approval_status?: string;
+    updatedAt?: string;
 }
 
 interface Scholarship {
@@ -32,8 +40,9 @@ interface TrendingCourse {
 }
 
 const GovDashboard: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'verification' | 'scholarships' | 'courses'>('verification');
+    const [activeTab, setActiveTab] = useState<'verification' | 'approved' | 'scholarships' | 'courses'>('verification');
     const [colleges, setColleges] = useState<College[]>([]);
+    const [approvedColleges, setApprovedColleges] = useState<College[]>([]);
     const [scholarships, setScholarships] = useState<Scholarship[]>([]);
     const [courses, setCourses] = useState<TrendingCourse[]>([]);
     const [loading, setLoading] = useState(true);
@@ -46,9 +55,16 @@ const GovDashboard: React.FC = () => {
     const [editingScholarshipId, setEditingScholarshipId] = useState<string | null>(null);
     const [editingCourseId, setEditingCourseId] = useState<string | null>(null);
 
+    const [govFilters, setGovFilters] = useState({
+        country: '',
+        state: '',
+        district: '',
+        type: ''
+    });
+
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [activeTab, govFilters]); // Re-fetch on tab or filter change
 
     const fetchData = async () => {
         const token = localStorage.getItem('token');
@@ -58,9 +74,21 @@ const GovDashboard: React.FC = () => {
             const collegesRes = await axios.get(`${API_BASE_URL}/gov/colleges`, { headers });
             setColleges(collegesRes.data);
         } catch (err) {
-            console.error("Failed to load colleges", err);
+            console.error("Failed to load pending colleges", err);
         }
 
+        try {
+            const params = new URLSearchParams();
+            if (govFilters.country) params.append('country', govFilters.country);
+            if (govFilters.state) params.append('state', govFilters.state);
+            if (govFilters.district) params.append('district', govFilters.district);
+            if (govFilters.type) params.append('type', govFilters.type);
+
+            const approvedRes = await axios.get(`${API_BASE_URL}/gov/approved-colleges?${params.toString()}`, { headers });
+            setApprovedColleges(approvedRes.data);
+        } catch (err) {
+            console.error("Failed to load approved colleges", err);
+        }
         try {
             const scholarshipsRes = await axios.get(`${API_BASE_URL}/gov/scholarships`, { headers });
             setScholarships(scholarshipsRes.data);
@@ -176,7 +204,7 @@ const GovDashboard: React.FC = () => {
         if (!window.confirm('Delete this course?')) return;
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`${API_BASE_URL}/gov/trending-courses/${id}`, {
+            await axios.delete(`${API_BASE_URL}/trending-courses/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setCourses(courses.filter(c => c.id !== id));
@@ -189,6 +217,7 @@ const GovDashboard: React.FC = () => {
 
     return (
         <div className="max-w-6xl mx-auto">
+            {/* ... (header) */}
             <header className="flex justify-between items-center mb-8">
                 <div>
                     <h2 className="text-3xl font-bold text-gray-800">Government Dashboard</h2>
@@ -197,6 +226,7 @@ const GovDashboard: React.FC = () => {
 
                 <div className="flex bg-white rounded-lg p-1 shadow-sm border">
                     <button onClick={() => setActiveTab('verification')} className={`px-4 py-2 rounded-md font-bold text-sm transition-all ${activeTab === 'verification' ? 'bg-govt-blue text-white shadow' : 'text-gray-500 hover:bg-gray-50'}`}>Requests</button>
+                    <button onClick={() => setActiveTab('approved')} className={`px-4 py-2 rounded-md font-bold text-sm transition-all ${activeTab === 'approved' ? 'bg-govt-blue text-white shadow' : 'text-gray-500 hover:bg-gray-50'}`}>Verified Colleges</button>
                     <button onClick={() => setActiveTab('scholarships')} className={`px-4 py-2 rounded-md font-bold text-sm transition-all ${activeTab === 'scholarships' ? 'bg-govt-blue text-white shadow' : 'text-gray-500 hover:bg-gray-50'}`}>Scholarships</button>
                     <button onClick={() => setActiveTab('courses')} className={`px-4 py-2 rounded-md font-bold text-sm transition-all ${activeTab === 'courses' ? 'bg-govt-blue text-white shadow' : 'text-gray-500 hover:bg-gray-50'}`}>Trending Courses</button>
                 </div>
@@ -205,9 +235,9 @@ const GovDashboard: React.FC = () => {
             {activeTab === 'verification' && (
                 <>
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                        <Building2 className="text-govt-blue" /> Pending College Verifications
+                        <Building2 className="text-govt-blue" /> Pending College Verifications ({colleges.filter(c => c.status !== 'APPROVED').length})
                     </h3>
-                    {colleges.length === 0 ? (
+                    {colleges.filter(c => c.status !== 'APPROVED').length === 0 ? (
                         <div className="text-center py-20 bg-white rounded shadow">
                             <Building2 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                             <h3 className="text-xl font-bold text-gray-400">No Pending Applications</h3>
@@ -220,16 +250,18 @@ const GovDashboard: React.FC = () => {
                                     <tr>
                                         <th className="p-4 font-semibold text-gray-600">College Name</th>
                                         <th className="p-4 font-semibold text-gray-600">Code</th>
-                                        <th className="p-4 font-semibold text-gray-600">Principal</th>
+                                        <th className="p-4 font-semibold text-gray-600">Location</th>
+                                        <th className="p-4 font-semibold text-gray-600">Submission Date</th>
                                         <th className="p-4 font-semibold text-gray-600">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {colleges.map((college) => (
+                                    {colleges.filter(c => c.status !== 'APPROVED').map((college) => (
                                         <tr key={college.id} className="border-b hover:bg-gray-50">
                                             <td className="p-4 font-bold">{college.name}</td>
                                             <td className="p-4 font-mono text-sm">{college.code}</td>
-                                            <td className="p-4 text-sm">{college.principal_name}</td>
+                                            <td className="p-4 text-sm">{college.district}, {college.state}</td>
+                                            <td className="p-4 text-sm text-gray-500">{new Date(college.updatedAt || Date.now()).toLocaleDateString()}</td>
                                             <td className="p-4">
                                                 <Link to={`/gov/verify/${college.id}`} className="inline-flex items-center gap-2 px-3 py-1 bg-govt-blue text-white rounded text-sm hover:bg-blue-800">
                                                     Verify <ArrowRight size={14} />
@@ -241,6 +273,79 @@ const GovDashboard: React.FC = () => {
                             </table>
                         </div>
                     )}
+                </>
+            )}
+
+            {activeTab === 'approved' && (
+                <>
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-xl font-bold flex items-center gap-2">
+                            <Building2 className="text-green-600" /> Approved & Verified Colleges ({approvedColleges.length})
+                        </h3>
+                        {/* Filter Bar */}
+                        <div className="flex gap-2">
+                            <select value={govFilters.country} onChange={e => setGovFilters({ ...govFilters, country: e.target.value })} className="p-2 border rounded text-xs bg-white shadow-sm">
+                                <option value="">All Countries</option>
+                                <option value="India">India</option>
+                                <option value="Canada">Canada</option>
+                                <option value="USA">USA</option>
+                            </select>
+                            <input type="text" placeholder="State..." value={govFilters.state} onChange={e => setGovFilters({ ...govFilters, state: e.target.value })} className="p-2 border rounded text-xs bg-white shadow-sm w-24" />
+                            <input type="text" placeholder="District..." value={govFilters.district} onChange={e => setGovFilters({ ...govFilters, district: e.target.value })} className="p-2 border rounded text-xs bg-white shadow-sm w-24" />
+                            <select value={govFilters.type} onChange={e => setGovFilters({ ...govFilters, type: e.target.value })} className="p-2 border rounded text-xs bg-white shadow-sm">
+                                <option value="">All Types</option>
+                                <option value="Government">Government</option>
+                                <option value="Private">Private</option>
+                            </select>
+                            <button
+                                onClick={() => setGovFilters({ country: '', state: '', district: '', type: '' })}
+                                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded text-xs font-bold transition-all text-gray-600"
+                            >
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                    <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <table className="w-full text-left">
+                            <thead className="bg-green-50 border-b">
+                                <tr>
+                                    <th className="p-4 font-semibold text-gray-600">College Name</th>
+                                    <th className="p-4 font-semibold text-gray-600">Type</th>
+                                    <th className="p-4 font-semibold text-gray-600">Location</th>
+                                    <th className="p-4 font-semibold text-gray-600">Valid Until</th>
+                                    <th className="p-4 font-semibold text-gray-600">Status</th>
+                                    <th className="p-4 font-semibold text-gray-600">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {approvedColleges.map((college) => (
+                                    <tr key={college.id} className="border-b hover:bg-gray-50">
+                                        <td className="p-4 font-bold">{college.name}</td>
+                                        <td className="p-4 text-sm">{college.college_type}</td>
+                                        <td className="p-4 text-sm">{college.district}, {college.state}</td>
+                                        <td className="p-4 text-sm">{college.valid_until ? new Date(college.valid_until).toLocaleDateString() : 'N/A'}</td>
+                                        <td className="p-4">
+                                            <span className={`px-2 py-1 rounded text-xs font-bold 
+                                                ${college.approval_status === 'ACTIVE' ? 'bg-green-100 text-green-700' :
+                                                    college.approval_status === 'EXPIRING_SOON' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700'}`}>
+                                                {college.approval_status}
+                                            </span>
+                                        </td>
+                                        <td className="p-4">
+                                            <Link to={`/gov/verify/${college.id}?mode=view`} className="text-govt-blue hover:underline text-sm font-semibold">
+                                                Manage
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ))}
+                                {approvedColleges.length === 0 && (
+                                    <tr>
+                                        <td colSpan={6} className="p-8 text-center text-gray-500">No approved colleges found.</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </>
             )}
 

@@ -11,6 +11,13 @@ const VerifyCollege: React.FC = () => {
     const [data, setData] = useState<any>(null);
     const [remarks, setRemarks] = useState('');
     const [actionLoading, setActionLoading] = useState(false);
+    const [checklist, setChecklist] = useState({
+        registration: false,
+        address: false,
+        accreditation: false,
+        courses: false,
+        contact: false
+    });
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -27,12 +34,22 @@ const VerifyCollege: React.FC = () => {
         fetchDetails();
     }, [id]);
 
-    const handleAction = async (action: 'APPROVED' | 'REJECTED' | 'CORRECTION_REQUIRED') => {
-        if (action !== 'APPROVED' && !remarks.trim()) {
-            alert('Please provide remarks for Rejection/Correction.');
+    const handleAction = async (action: 'APPROVED' | 'REJECTED' | 'CORRECTION_REQUIRED' | 'RENEW' | 'REVOKE') => {
+        if ((action === 'REJECTED' || action === 'CORRECTION_REQUIRED' || action === 'REVOKE') && !remarks.trim()) {
+            alert('Please provide remarks for this action.');
             return;
         }
-        if (!window.confirm(`Are you sure you want to mark this as ${action}?`)) return;
+
+        // Checklist check for approval
+        if (action === 'APPROVED') {
+            const allChecked = Object.values(checklist).every(v => v);
+            if (!allChecked) {
+                alert('All checklist items must be verified before approval.');
+                return;
+            }
+        }
+
+        if (!window.confirm(`Are you sure you want to perform action: ${action}?`)) return;
 
         setActionLoading(true);
         try {
@@ -47,11 +64,13 @@ const VerifyCollege: React.FC = () => {
             alert(`College ${action} Successfully`);
             navigate('/gov/dashboard');
         } catch (err: any) {
-            alert(err.response?.data?.error || 'Verification Failed');
+            alert(err.response?.data?.error || 'Action Failed');
         } finally {
             setActionLoading(false);
         }
     };
+
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
 
     if (!data) return <div className="p-10 text-center">Loading Data...</div>;
 
@@ -60,6 +79,26 @@ const VerifyCollege: React.FC = () => {
 
     return (
         <div className="max-w-6xl mx-auto pb-20">
+            {/* Image Preview Modal */}
+            {previewImage && (
+                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+                    <div className="relative bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+                        <button
+                            onClick={() => setPreviewImage(null)}
+                            className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 p-2 rounded-full text-white bg-red-500"
+                        >
+                            <XCircle size={24} />
+                        </button>
+                        <div className="p-4 flex items-center justify-center bg-gray-900">
+                            <img src={previewImage} alt="Preview" className="max-w-full max-h-[80vh] object-contain" />
+                        </div>
+                        <div className="p-4 text-center border-t">
+                            <a href={previewImage} download className="px-4 py-2 bg-govt-blue text-white rounded font-bold hover:bg-blue-800">Download Image</a>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-500 mb-6 hover:text-govt-blue">
                 <ArrowLeft size={20} /> Back to Dashboard
             </button>
@@ -67,13 +106,22 @@ const VerifyCollege: React.FC = () => {
             <header className="flex justify-between items-start mb-8 border-b pb-6">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-800">{data.name}</h1>
-                    <p className="text-gray-500">AISHE Code: <span className="font-mono font-bold text-black">{data.code}</span></p>
+                    <p className="text-gray-500 flex items-center gap-2">
+                        AISHE Code: <span className="font-mono font-bold text-black">{data.code}</span>
+                        <span className="text-xs bg-gray-100 px-2 py-0.5 rounded border">{data.college_type}</span>
+                    </p>
                     <p className="text-sm mt-1">{data.address} | Principal: {data.principal_name} ({data.principal_phone})</p>
+                    <p className="text-xs text-gray-400 mt-1">{data.district}, {data.state}, {data.country}</p>
                 </div>
                 <div className="text-right">
-                    <span className="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded font-bold text-sm">
+                    <span className={`inline-block px-3 py-1 rounded font-bold text-sm ${data.status === 'APPROVED' ? 'bg-green-100 text-green-800' :
+                        data.status === 'REJECTED' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'
+                        }`}>
                         {data.status}
                     </span>
+                    {data.valid_until && (
+                        <p className="text-xs mt-2 text-gray-500">Expires: {new Date(data.valid_until).toLocaleDateString()}</p>
+                    )}
                 </div>
             </header>
 
@@ -81,11 +129,33 @@ const VerifyCollege: React.FC = () => {
                 {/* Left Column: Data */}
                 <div className="lg:col-span-2 space-y-8">
 
+                    {/* Basic Info (Read-Only) */}
+                    <section className="bg-white p-6 rounded shadow border">
+                        <h3 className="text-lg font-bold text-govt-blue mb-4 flex items-center gap-2">
+                            <CheckCircle size={20} /> Institutional Profile
+                        </h3>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+                            <div>
+                                <p className="text-gray-500">Website</p>
+                                <a href={data.website || '#'} className="font-semibold text-blue-600 hover:underline">{data.website || 'N/A'}</a>
+                            </div>
+                            <div>
+                                <p className="text-gray-500">Email (Official)</p>
+                                <p className="font-semibold">{data.email}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-500">Principal</p>
+                                <p className="font-semibold">{data.principal_name}</p>
+                            </div>
+                        </div>
+                    </section>
+
                     {/* Academic Section */}
                     <section className="bg-white p-6 rounded shadow border">
                         <h3 className="text-lg font-bold text-govt-blue mb-4 flex items-center gap-2">
                             <FileText size={20} /> Academic Details
                         </h3>
+                        {/* ... (Existing Content) */}
                         <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
                                 <p className="text-gray-500">Accreditation</p>
@@ -99,9 +169,13 @@ const VerifyCollege: React.FC = () => {
                         <div className="mt-4">
                             <p className="text-gray-500 text-sm mb-1">Courses Offered</p>
                             <div className="flex flex-wrap gap-2">
-                                {academic?.courses_offered ? JSON.parse(academic.courses_offered).map((c: string, i: number) => (
-                                    <span key={i} className="px-2 py-1 bg-gray-100 rounded text-xs border">{c}</span>
-                                )) : 'None'}
+                                {academic?.courses_offered ? (
+                                    typeof academic.courses_offered === 'string' ? JSON.parse(academic.courses_offered).map((c: string, i: number) => (
+                                        <span key={i} className="px-2 py-1 bg-gray-100 rounded text-xs border">{c}</span>
+                                    )) : academic.courses_offered.map((c: string, i: number) => (
+                                        <span key={i} className="px-2 py-1 bg-gray-100 rounded text-xs border">{c}</span>
+                                    ))
+                                ) : 'None'}
                             </div>
                         </div>
                     </section>
@@ -153,7 +227,9 @@ const VerifyCollege: React.FC = () => {
                         <div>
                             <p className="text-xs text-gray-500 mb-2">Companies Visited</p>
                             <p className="text-sm">
-                                {placement?.companies_visited ? JSON.parse(placement.companies_visited).join(', ') : 'N/A'}
+                                {placement?.companies_visited ? (
+                                    typeof placement.companies_visited === 'string' ? JSON.parse(placement.companies_visited).join(', ') : placement.companies_visited.join(', ')
+                                ) : 'N/A'}
                             </p>
                         </div>
                     </section>
@@ -172,22 +248,29 @@ const VerifyCollege: React.FC = () => {
                                     onClick={async () => {
                                         try {
                                             const token = localStorage.getItem('token');
-                                            const filename = doc.url.split('/uploads/')[1];
-                                            const response = await axios.get(`${API_BASE_URL}/upload/${filename}`, {
+                                            const response = await axios.get(`${API_BASE_URL}/documents/${doc.id}`, {
                                                 headers: { Authorization: `Bearer ${token}` },
                                                 responseType: 'blob'
                                             });
-                                            const url = window.URL.createObjectURL(new Blob([response.data]));
-                                            window.open(url, '_blank');
+                                            const contentType = response.headers['content-type'] || 'application/pdf';
+                                            const file = new Blob([response.data], { type: contentType });
+                                            const fileURL = URL.createObjectURL(file);
+
+                                            if (contentType.includes('image')) {
+                                                setPreviewImage(fileURL);
+                                            } else {
+                                                window.open(fileURL, '_blank');
+                                            }
                                         } catch (e) {
-                                            alert('Failed to open document. Authorization required.');
+                                            console.error(e);
+                                            alert('Failed to open document.');
                                         }
                                     }}
                                     className="w-full text-left bg-white p-3 border rounded hover:bg-gray-50 flex items-center justify-between group cursor-pointer"
                                 >
                                     <div>
-                                        <p className="font-semibold text-sm capitalize">{doc.doc_type.replace('_', ' ')}</p>
-                                        <p className="text-xs text-gray-400">Click to View (Secure)</p>
+                                        <p className="font-semibold text-sm capitalize">{doc.doc_type ? doc.doc_type.replace('_', ' ') : 'Document'}</p>
+                                        <p className="text-xs text-gray-400">View Attachment</p>
                                     </div>
                                     <ExternalLink size={16} className="text-gray-400 group-hover:text-govt-blue" />
                                 </button>
@@ -196,44 +279,94 @@ const VerifyCollege: React.FC = () => {
                         </div>
                     </section>
 
+                    {/* Officer Checklist (Only for Pending) */}
+                    {data.status !== 'APPROVED' && (
+                        <section className="bg-white p-6 rounded shadow border">
+                            <h3 className="text-lg font-bold text-gray-800 mb-4">Verification Checklist</h3>
+                            <div className="space-y-3">
+                                {Object.entries({
+                                    registration: 'Registration Valid',
+                                    address: 'Address Verified',
+                                    accreditation: 'Accreditation Verified',
+                                    courses: 'Courses Approved',
+                                    contact: 'Contact Details Valid'
+                                }).map(([key, label]) => (
+                                    <label key={key} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer border border-transparent hover:border-gray-200">
+                                        <input
+                                            type="checkbox"
+                                            checked={(checklist as any)[key]}
+                                            onChange={(e) => setChecklist({ ...checklist, [key]: e.target.checked })}
+                                            className="w-5 h-5 accent-govt-blue"
+                                        />
+                                        <span className="text-sm font-medium text-gray-700">{label}</span>
+                                    </label>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
                     {/* Action Panel */}
                     <section className="bg-gray-50 p-6 rounded-lg border-2 border-govt-gold">
-                        <h3 className="text-lg font-bold text-gray-800 mb-4">Verification Actions</h3>
+                        <h3 className="text-lg font-bold text-gray-800 mb-4">
+                            {data.status === 'APPROVED' ? 'Renewal Management' : 'Verification Actions'}
+                        </h3>
 
                         <div className="mb-4">
-                            <label className="block text-sm font-bold text-gray-700 mb-2">Officer Remarks (Allowed for Public View)</label>
+                            <label className="block text-sm font-bold text-gray-700 mb-2">Officer Remarks</label>
                             <textarea
                                 value={remarks}
                                 onChange={(e) => setRemarks(e.target.value)}
                                 className="w-full p-3 border rounded h-24 text-sm"
-                                placeholder="Enter reasons for rejection or correction requests..."
+                                placeholder={data.status === 'APPROVED' ? "Enter renewal or revocation reason..." : "Enter reasons for rejection or correction requests..."}
                             ></textarea>
                         </div>
 
                         <div className="grid grid-cols-1 gap-3">
-                            <button
-                                onClick={() => handleAction('APPROVED')}
-                                disabled={actionLoading}
-                                className="w-full py-3 bg-green-600 text-white font-bold rounded hover:bg-green-700 flex items-center justify-center gap-2"
-                            >
-                                <CheckCircle size={18} /> Approve College
-                            </button>
+                            {data.status !== 'APPROVED' ? (
+                                <>
+                                    <button
+                                        onClick={() => handleAction('APPROVED')}
+                                        disabled={actionLoading}
+                                        className="w-full py-3 bg-green-600 text-white font-bold rounded hover:bg-green-700 flex items-center justify-center gap-2"
+                                    >
+                                        <CheckCircle size={18} /> Approve College
+                                    </button>
 
-                            <button
-                                onClick={() => handleAction('CORRECTION_REQUIRED')}
-                                disabled={actionLoading}
-                                className="w-full py-3 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 flex items-center justify-center gap-2"
-                            >
-                                <AlertCircle size={18} /> Request Correction
-                            </button>
+                                    <button
+                                        onClick={() => handleAction('CORRECTION_REQUIRED')}
+                                        disabled={actionLoading}
+                                        className="w-full py-3 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 flex items-center justify-center gap-2"
+                                    >
+                                        <AlertCircle size={18} /> Request Correction
+                                    </button>
 
-                            <button
-                                onClick={() => handleAction('REJECTED')}
-                                disabled={actionLoading}
-                                className="w-full py-3 bg-red-600 text-white font-bold rounded hover:bg-red-700 flex items-center justify-center gap-2"
-                            >
-                                <XCircle size={18} /> Reject Application
-                            </button>
+                                    <button
+                                        onClick={() => handleAction('REJECTED')}
+                                        disabled={actionLoading}
+                                        className="w-full py-3 bg-red-600 text-white font-bold rounded hover:bg-red-700 flex items-center justify-center gap-2"
+                                    >
+                                        <XCircle size={18} /> Reject Application
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button
+                                        onClick={() => handleAction('RENEW')}
+                                        disabled={actionLoading}
+                                        className="w-full py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 flex items-center justify-center gap-2"
+                                    >
+                                        <CheckCircle size={18} /> Renew Approval (+6 Months)
+                                    </button>
+
+                                    <button
+                                        onClick={() => handleAction('REVOKE')}
+                                        disabled={actionLoading}
+                                        className="w-full py-3 bg-red-600 text-white font-bold rounded hover:bg-red-700 flex items-center justify-center gap-2"
+                                    >
+                                        <XCircle size={18} /> Revoke Approval
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </section>
 

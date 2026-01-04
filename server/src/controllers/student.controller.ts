@@ -47,8 +47,16 @@ export const getApprovedColleges = async (req: AuthRequest, res: Response) => {
     try {
         const { country, state, district, type, course } = req.query;
 
+        // STRICT VISIBILITY RULE:
+        // status = 'APPROVED'
+        // approval_status = 'ACTIVE'
+        // valid_until > NOW
+        const now = new Date();
+
         const whereClause: any = {
-            status: 'APPROVED'
+            status: 'APPROVED',
+            approval_status: 'ACTIVE',
+            valid_until: { gt: now }
         };
 
         if (country) whereClause.country = { contains: String(country), mode: 'insensitive' };
@@ -68,7 +76,7 @@ export const getApprovedColleges = async (req: AuthRequest, res: Response) => {
                 id: true,
                 name: true,
                 address: true,
-                college_type: true,
+                college_type: true, // Assuming this field exists based on schema
                 country: true,
                 state: true,
                 district: true,

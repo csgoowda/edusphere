@@ -131,12 +131,12 @@ export const loginGovernment = async (req: Request, res: Response) => {
         });
 
         if (!officer) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            return res.status(401).json({ error: 'User not found' });
         }
 
         const validPassword = await bcrypt.compare(password, officer.password_hash);
         if (!validPassword) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            return res.status(401).json({ error: 'Invalid password' });
         }
 
         const token = jwt.sign(
