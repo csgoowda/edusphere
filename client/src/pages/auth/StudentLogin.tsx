@@ -17,11 +17,11 @@ const StudentLogin: React.FC = () => {
         e.preventDefault();
         setError('');
         try {
-            const res = await axios.post(`${API_BASE_URL}/auth/student/login`, { phone });
+            const res = await axios.post(`${API_BASE_URL}/student/send-otp`, { mobile: phone });
             setMockOtp(res.data.mockOtp);
             setStep('OTP');
         } catch (err: any) {
-            setError(err.response?.data?.error || 'Failed to send OTP');
+            setError(err.response?.data?.error || err.response?.data?.message || 'Failed to send OTP');
         }
     };
 
@@ -29,7 +29,7 @@ const StudentLogin: React.FC = () => {
         e.preventDefault();
         setError('');
         try {
-            const res = await axios.post(`${API_BASE_URL}/auth/student/login`, { phone, otp });
+            const res = await axios.post(`${API_BASE_URL}/student/verify-otp`, { mobile: phone, otp });
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.user));
 
@@ -39,7 +39,7 @@ const StudentLogin: React.FC = () => {
                 navigate('/student/dashboard');
             }
         } catch (err: any) {
-            setError(err.response?.data?.error || 'Invalid OTP');
+            setError(err.response?.data?.error || err.response?.data?.message || 'Invalid OTP');
         }
     };
 

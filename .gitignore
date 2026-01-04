@@ -24,3 +24,7 @@ build/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Logs
+*.log
+server/debug_*.log
