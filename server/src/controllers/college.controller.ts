@@ -54,9 +54,16 @@ export const getCollegeDetails = async (req: AuthRequest, res: Response) => {
 export const submitCollegeData = async (req: AuthRequest, res: Response) => {
     try {
         const collegeId = req.user?.id;
+        if (!collegeId) return res.status(401).json({ error: 'Unauthorized' });
+
+        // Security Check: Cannot submit if already locked (under review)
+        const currentCollege = await prisma.college.findUnique({ where: { id: collegeId } });
+        if (currentCollege?.is_locked && currentCollege.status === 'PENDING') {
+            return res.status(403).json({ error: 'Your submission is already under review and cannot be modified.' });
+        }
+
         const data = SubmissionSchema.parse(req.body);
 
-        if (!collegeId) return res.status(401).json({ error: 'Unauthorized' });
 
         // Transaction to ensure atomicity
         await prisma.$transaction(async (tx: any) => {
@@ -133,9 +140,9 @@ export const submitCollegeData = async (req: AuthRequest, res: Response) => {
             if (data.documents) {
                 const docData = Object.entries(data.documents).map(([key, url]) => ({
                     college_id: collegeId,
-                    type: key, // aicte_approval, etc.
-                    url: url as string
-                })).filter(d => d.url); // only if url exists
+                    doc_type: key, // aicte_approval, etc.
+                    file_url: url as string
+                })).filter(d => d.file_url); // only if url exists
 
                 if (docData.length > 0) {
                     await tx.document.createMany({ data: docData });

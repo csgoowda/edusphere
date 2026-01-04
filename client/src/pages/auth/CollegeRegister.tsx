@@ -11,6 +11,11 @@ const CollegeRegister: React.FC = () => {
         email: '',
         code: '',
         address: '',
+        college_type: 'Private',
+        country: 'India',
+        state: '',
+        district: '',
+        website: '',
         principal_name: '',
         principal_phone: '',
         password: '',
@@ -19,7 +24,7 @@ const CollegeRegister: React.FC = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -71,8 +76,40 @@ const CollegeRegister: React.FC = () => {
                         <input type="text" name="code" onChange={handleChange} className="w-full p-2 border rounded focus:ring-2 focus:ring-govt-blue" required />
                     </div>
 
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">College Type</label>
+                        <select name="college_type" value={formData.college_type} onChange={handleChange} className="w-full p-2 border rounded focus:ring-2 focus:ring-govt-blue" required>
+                            <option value="Private">Private</option>
+                            <option value="Government">Government</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Official Website</label>
+                        <input type="url" name="website" onChange={handleChange} className="w-full p-2 border rounded focus:ring-2 focus:ring-govt-blue" placeholder="https://example.edu" required />
+                    </div>
+
+                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                            <select name="country" value={formData.country} onChange={handleChange} className="w-full p-2 border rounded focus:ring-2 focus:ring-govt-blue" required>
+                                <option value="India">India</option>
+                                <option value="Canada">Canada</option>
+                                <option value="USA">USA</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">State / Province</label>
+                            <input type="text" name="state" onChange={handleChange} className="w-full p-2 border rounded focus:ring-2 focus:ring-govt-blue" placeholder="e.g. Karnataka" required />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">District / City</label>
+                            <input type="text" name="district" onChange={handleChange} className="w-full p-2 border rounded focus:ring-2 focus:ring-govt-blue" placeholder="e.g. Bangalore" required />
+                        </div>
+                    </div>
+
                     <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Address</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Address (Campus Location)</label>
                         <input type="text" name="address" onChange={handleChange} className="w-full p-2 border rounded focus:ring-2 focus:ring-govt-blue" required />
                     </div>
 

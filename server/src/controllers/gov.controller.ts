@@ -27,6 +27,10 @@ export const getPendingColleges = async (req: AuthRequest, res: Response) => {
                 email: true,
                 status: true,
                 is_locked: true,
+                college_type: true,
+                country: true,
+                state: true,
+                district: true,
                 principal_name: true,
                 address: true,
             }

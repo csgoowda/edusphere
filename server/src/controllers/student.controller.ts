@@ -45,13 +45,33 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
 
 export const getApprovedColleges = async (req: AuthRequest, res: Response) => {
     try {
-        // Strict Filter: Only APPROVED colleges
+        const { country, state, district, type, course } = req.query;
+
+        const whereClause: any = {
+            status: 'APPROVED'
+        };
+
+        if (country) whereClause.country = { contains: String(country), mode: 'insensitive' };
+        if (state) whereClause.state = { contains: String(state), mode: 'insensitive' };
+        if (district) whereClause.district = { contains: String(district), mode: 'insensitive' };
+        if (type) whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+
+        if (course) {
+            whereClause.academic_details = {
+                courses_offered: { contains: String(course), mode: 'insensitive' }
+            };
+        }
+
         const colleges = await prisma.college.findMany({
-            where: { status: 'APPROVED' },
+            where: whereClause,
             select: {
                 id: true,
                 name: true,
                 address: true,
+                college_type: true,
+                country: true,
+                state: true,
+                district: true,
                 academic_details: {
                     select: { courses_offered: true, accreditation: true, intake_capacity: true }
                 },
@@ -61,8 +81,9 @@ export const getApprovedColleges = async (req: AuthRequest, res: Response) => {
             }
         });
         res.json(colleges);
-    } catch (error) {
-        res.status(500).json({ error: 'Fetch Failed' });
+    } catch (error: any) {
+        console.error("[STUDENT] getApprovedColleges Error:", error);
+        res.status(500).json({ error: 'Fetch Failed', message: error.message });
     }
 };
 

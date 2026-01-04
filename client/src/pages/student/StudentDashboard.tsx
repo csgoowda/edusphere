@@ -7,30 +7,96 @@ import API_BASE_URL from '../../api';
 const StudentDashboard: React.FC = () => {
     const [colleges, setColleges] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [filters, setFilters] = useState({
+        country: '',
+        state: '',
+        district: '',
+        type: '',
+        course: ''
+    });
+
+    const fetchColleges = async () => {
+        setLoading(true);
+        try {
+            const token = localStorage.getItem('token');
+            const params = new URLSearchParams();
+            if (filters.country) params.append('country', filters.country);
+            if (filters.state) params.append('state', filters.state);
+            if (filters.district) params.append('district', filters.district);
+            if (filters.type) params.append('type', filters.type);
+            if (filters.course) params.append('course', filters.course);
+
+            const res = await axios.get(`${API_BASE_URL}/student/colleges?${params.toString()}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setColleges(res.data);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchColleges = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const res = await axios.get(`${API_BASE_URL}/student/colleges`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                setColleges(res.data);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
         fetchColleges();
     }, []);
 
+    const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setFilters({ ...filters, [e.target.name]: e.target.value });
+    };
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        fetchColleges();
+    };
+
     return (
         <div className="max-w-6xl mx-auto">
-            <header className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-800">Verified Colleges</h1>
-                <p className="text-gray-500">Only government verified institutions are listed here.</p>
+            <header className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 className="text-3xl font-bold text-gray-800">Verified Colleges</h1>
+                    <p className="text-gray-500">Find government-verified institutions worldwide.</p>
+                </div>
+                <div className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-sm">
+                    {colleges.length} Institutions Found
+                </div>
             </header>
+
+            {/* Filter Bar */}
+            <form onSubmit={handleSearch} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 items-end">
+                <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Country</label>
+                    <select name="country" value={filters.country} onChange={handleFilterChange} className="w-full p-2 border rounded bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                        <option value="">All Countries</option>
+                        <option value="India">India</option>
+                        <option value="Canada">Canada</option>
+                        <option value="USA">USA</option>
+                    </select>
+                </div>
+                <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase mb-1">State</label>
+                    <input type="text" name="state" value={filters.state} onChange={handleFilterChange} placeholder="e.g. Ontario" className="w-full p-2 border rounded bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                </div>
+                <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase mb-1">District/City</label>
+                    <input type="text" name="district" value={filters.district} onChange={handleFilterChange} placeholder="e.g. Toronto" className="w-full p-2 border rounded bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                </div>
+                <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Type</label>
+                    <select name="type" value={filters.type} onChange={handleFilterChange} className="w-full p-2 border rounded bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                        <option value="">All Types</option>
+                        <option value="Government">Government</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </div>
+                <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Course</label>
+                    <input type="text" name="course" value={filters.course} onChange={handleFilterChange} placeholder="e.g. CS" className="w-full p-2 border rounded bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                </div>
+                <button type="submit" className="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition shadow-md text-sm">
+                    Apply Filters
+                </button>
+            </form>
 
             {loading ? <div className="text-center p-10">Loading...</div> : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

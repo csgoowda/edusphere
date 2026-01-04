@@ -14,6 +14,10 @@ const RegisterSchema = z.object({
     password: z.string().min(6),
     code: z.string().min(3), // College Code
     address: z.string().min(5),
+    college_type: z.enum(['Government', 'Private']),
+    country: z.enum(['India', 'Canada', 'USA']),
+    state: z.string().min(2),
+    district: z.string().min(2),
     principal_name: z.string().min(3),
     principal_phone: z.string().min(10),
 });
@@ -47,6 +51,10 @@ export const registerCollege = async (req: Request, res: Response) => {
                 password_hash: hashedPassword,
                 code: validated.code,
                 address: validated.address,
+                college_type: validated.college_type,
+                country: validated.country,
+                state: validated.state,
+                district: validated.district,
                 principal_name: validated.principal_name,
                 principal_phone: validated.principal_phone,
                 status: 'PENDING',
