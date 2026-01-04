@@ -8482,3 +8482,1515 @@ Unknown field `approved_at` for select statement on model `College`. Available o
     at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
     at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
 
+[2026-01-04T07:06:19.082Z] Failed to fetch pending colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getPendingColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:26)
+
+[2026-01-04T07:06:19.092Z] Failed to fetch approved colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
+
+[2026-01-04T07:17:29.985Z] Failed to fetch pending colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getPendingColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:26)
+
+[2026-01-04T07:17:29.999Z] Failed to fetch pending colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getPendingColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:26)
+
+[2026-01-04T07:17:30.015Z] Failed to fetch approved colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
+
+[2026-01-04T07:17:30.031Z] Failed to fetch approved colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
+
+[2026-01-04T07:17:34.486Z] Failed to fetch pending colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getPendingColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:26)
+
+[2026-01-04T07:17:34.497Z] Failed to fetch approved colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
+
+[2026-01-04T07:17:36.534Z] Failed to fetch pending colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getPendingColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:26)
+
+[2026-01-04T07:17:36.546Z] Failed to fetch approved colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
+
+[2026-01-04T07:17:38.165Z] Failed to fetch pending colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getPendingColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:26)
+
+[2026-01-04T07:17:38.176Z] Failed to fetch approved colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
+
+[2026-01-04T07:17:39.682Z] Failed to fetch pending colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:56
+
+  18 // 1. Get Pending Colleges
+  19 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
+  20     try {
+→ 21         const colleges = await (prisma.college as any).findMany({
+               where: {
+                 status: {
+                   in: [
+                     "PENDING",
+                     "CORRECTION_REQUIRED",
+                     "CORRECTION"
+                   ]
+                 },
+                 is_locked: true
+               },
+               select: {
+                 id: true,
+                 name: true,
+                 code: true,
+                 email: true,
+                 status: true,
+                 is_locked: true,
+                 college_type: true,
+                 country: true,
+                 state: true,
+                 district: true,
+                 principal_name: true,
+                 address: true,
+                 updatedAt: true,
+                 ~~~~~~~~~
+             ?   password_hash?: true,
+             ?   website?: true,
+             ?   principal_phone?: true,
+             ?   verified_by?: true,
+             ?   verified_at?: true,
+             ?   remarks?: true,
+             ?   verifier?: true,
+             ?   academic_details?: true,
+             ?   placement_details?: true,
+             ?   faculty?: true,
+             ?   documents?: true,
+             ?   verification_logs?: true,
+             ?   _count?: true
+               },
+               orderBy: {
+                 name: "asc"
+               }
+             })
+
+Unknown field `updatedAt` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getPendingColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:21:26)
+
+[2026-01-04T07:17:39.693Z] Failed to fetch approved colleges: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+PrismaClientValidationError: 
+Invalid `any).findMany()` invocation in
+C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:56
+
+  60 if (district && district !== '') whereClause.district = { contains: String(district), mode: 'insensitive' };
+  61 if (type && type !== '') whereClause.college_type = { contains: String(type), mode: 'insensitive' };
+  62 
+→ 63 const colleges = await (prisma.college as any).findMany({
+       where: {
+         status: {
+           contains: "APPROVED",
+           mode: "insensitive"
+         }
+       },
+       select: {
+         id: true,
+         name: true,
+         code: true,
+         college_type: true,
+         country: true,
+         state: true,
+         district: true,
+         approved_at: true,
+         ~~~~~~~~~~~
+         valid_until: true,
+         approval_status: true,
+         status: true,
+     ?   email?: true,
+     ?   password_hash?: true,
+     ?   address?: true,
+     ?   website?: true,
+     ?   principal_name?: true,
+     ?   principal_phone?: true,
+     ?   is_locked?: true,
+     ?   verified_by?: true,
+     ?   verified_at?: true,
+     ?   remarks?: true,
+     ?   verifier?: true,
+     ?   academic_details?: true,
+     ?   placement_details?: true,
+     ?   faculty?: true,
+     ?   documents?: true,
+     ?   verification_logs?: true,
+     ?   _count?: true
+       }
+     })
+
+Unknown field `approved_at` for select statement on model `College`. Available options are marked with ?.
+    at wn (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at $n.handleRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6958)
+    at $n.handleAndLogRequestError (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\cheth\OneDrive\Desktop\hackathon\server\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async getApprovedColleges (C:\Users\cheth\OneDrive\Desktop\hackathon\server\src\controllers\gov.controller.ts:63:26)
+
