@@ -62,7 +62,7 @@ export const getApprovedColleges = async (req: AuthRequest, res: Response) => {
             };
         }
 
-        const colleges = await prisma.college.findMany({
+        const colleges = await (prisma.college as any).findMany({
             where: whereClause,
             select: {
                 id: true,

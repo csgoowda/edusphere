@@ -65,9 +65,9 @@ model College {
   name            String
   address         String
   college_type    String   @default("Private") // Government / Private
-  country         String
-  state           String
-  district        String
+  country         String   @default("India")
+  state           String   @default("Unknown")
+  district        String   @default("Unknown")
   website         String?
   principal_name  String
   principal_phone String

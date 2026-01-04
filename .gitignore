@@ -28,3 +28,11 @@ Thumbs.db
 # Logs
 *.log
 server/debug_*.log
+curl
+
+# Debug / local test files
+server/check_schema.ts
+git
+
+# Logs
+*.log

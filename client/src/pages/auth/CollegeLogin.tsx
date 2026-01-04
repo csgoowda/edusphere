@@ -23,7 +23,9 @@ const CollegeLogin: React.FC = () => {
             localStorage.setItem('user', JSON.stringify(res.data.user));
             navigate('/college/dashboard');
         } catch (err: any) {
-            setError(err.response?.data?.error || 'Login failed. Please check credentials.');
+            const details = err.response?.data?.details;
+            const errorMsg = err.response?.data?.error;
+            setError(details ? `${errorMsg}: ${details}` : errorMsg || 'Login failed. Please check credentials.');
         }
     };
 

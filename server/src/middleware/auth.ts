@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key_change_me';
+const JWT_SECRET = process.env.JWT_SECRET || 'gov_edusphere_secret_key_2026';
 
 export interface AuthRequest extends Request {
     user?: {

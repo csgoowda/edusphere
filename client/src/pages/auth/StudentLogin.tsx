@@ -21,7 +21,7 @@ const StudentLogin: React.FC = () => {
             setMockOtp(res.data.mockOtp);
             setStep('OTP');
         } catch (err: any) {
-            setError(err.response?.data?.error || err.response?.data?.message || 'Failed to send OTP');
+            setError(err.response?.data?.details || err.response?.data?.error || err.response?.data?.message || 'Failed to send OTP');
         }
     };
 

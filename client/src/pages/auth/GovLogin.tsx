@@ -23,8 +23,9 @@ const GovLogin: React.FC = () => {
             navigate('/gov/dashboard');
         } catch (err: any) {
             console.error("Login Error:", err);
-            const msg = err.response?.data?.error || err.message || 'Access Denied.';
-            setError(msg);
+            const details = err.response?.data?.details;
+            const errorMsg = err.response?.data?.error || err.message || 'Access Denied.';
+            setError(details ? `${errorMsg}: ${details}` : errorMsg);
         }
     };
 

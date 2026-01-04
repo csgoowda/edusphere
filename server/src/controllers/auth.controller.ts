@@ -44,7 +44,7 @@ export const registerCollege = async (req: Request, res: Response) => {
 
         const hashedPassword = await bcrypt.hash(validated.password, 10);
 
-        const college = await prisma.college.create({
+        const college = await (prisma.college as any).create({
             data: {
                 name: validated.name,
                 email: validated.email,
@@ -63,6 +63,7 @@ export const registerCollege = async (req: Request, res: Response) => {
         });
 
         const token = jwt.sign({ id: college.id, role: 'COLLEGE' }, JWT_SECRET, { expiresIn: '8h' });
+
 
         res.status(201).json({
             message: 'Registration successful',
@@ -109,10 +110,11 @@ export const loginCollege = async (req: Request, res: Response) => {
         });
 
     } catch (error: any) {
+        console.error("[AUTH] Login College Error:", error);
         if (error instanceof z.ZodError) {
             return res.status(400).json({ error: error.errors });
         }
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 };
 
@@ -153,9 +155,9 @@ export const loginGovernment = async (req: Request, res: Response) => {
             }
         });
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+    } catch (error: any) {
+        console.error("[AUTH] Login Government Error:", error);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 };
 

@@ -15,7 +15,7 @@ const logError = (msg: string, error: any) => {
 
 export const getPendingColleges = async (req: AuthRequest, res: Response) => {
     try {
-        const colleges = await prisma.college.findMany({
+        const colleges = await (prisma.college as any).findMany({
             where: {
                 status: { in: ['PENDING', 'CORRECTION_REQUIRED'] },
                 is_locked: true
